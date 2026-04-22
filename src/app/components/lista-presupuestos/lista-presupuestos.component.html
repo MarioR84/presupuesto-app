@@ -1,0 +1,95 @@
+<h3 class="mb-4">Presupuestos</h3>
+
+<div *ngIf="presupuestoService.getPresupuesto().length === 0" class="alert alert-info">
+  No hay presupuestos registrados. Crea uno usando el formulario.
+</div>
+
+<div class="presupuestos-grid">
+  <div class="presupuesto-card" *ngFor="let p of presupuestoService.getPresupuesto(); let i = index">
+
+    <!-- Encabezado con nombre -->
+    <div class="card-header-presupuesto" [ngClass]="'color-' + (i % 4)">
+      <h4 class="presupuesto-nombre">{{ p.nombre }}</h4>
+      <p class="presupuesto-meses">{{ p.meses.join(', ') }}</p>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="card-body-presupuesto">
+
+      <!-- Resumen financiero -->
+      <div class="resumen-financiero">
+        <div class="finanza-item">
+          <span class="finanza-label">Inicial:</span>
+          <span class="finanza-valor">₡{{ p.monto }}</span>
+        </div>
+        <div class="finanza-item" [ngClass]="'estado-' + (getColor(p).replace('text-', ''))">
+          <span class="finanza-label">Restante:</span>
+          <span class="finanza-valor">₡{{ p.restante }}</span>
+        </div>
+      </div>
+
+      <!-- Barra de divider -->
+      <div class="divider"></div>
+
+      <!-- Agregar dinero -->
+      <div class="seccion">
+        <h6 class="seccion-titulo">Agregar Dinero</h6>
+        <div class="d-flex gap-2">
+          <input
+            type="number"
+            min="1"
+            class="form-control form-control-sm"
+            placeholder="Monto"
+            [(ngModel)]="montosExtra[i]">
+          <button class="btn btn-sm btn-success" (click)="agregarMonto(i)">+</button>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="divider"></div>
+
+      <!-- Registrar gasto -->
+      <div class="seccion">
+        <h6 class="seccion-titulo">Registrar Gasto</h6>
+        <input
+          type="number"
+          min="1"
+          class="form-control form-control-sm mb-2"
+          placeholder="Monto"
+          [(ngModel)]="montosGasto[i]">
+        <input
+          type="text"
+          class="form-control form-control-sm mb-2"
+          placeholder="Justificación"
+          [(ngModel)]="justificaciones[i]">
+        <button class="btn btn-sm btn-warning w-100" (click)="agregarGasto(i)">Registrar</button>
+      </div>
+
+      <!-- Mensajes de feedback -->
+      <div *ngIf="erroresGasto[i]" class="alert alert-danger mt-2 mb-0 p-2 text-center small">
+        {{ erroresGasto[i] }}
+      </div>
+      <div *ngIf="exitosGasto[i]" class="alert alert-success mt-2 mb-0 p-2 text-center small">
+        ✓ Gasto registrado
+      </div>
+
+      <!-- Historial de gastos -->
+      <div *ngIf="p.gastos && p.gastos.length > 0" class="seccion mt-3">
+        <h6 class="seccion-titulo mb-2">Historial ({{ p.gastos.length }})</h6>
+        <div class="gastos-lista">
+          <div *ngFor="let g of p.gastos" class="gasto-item">
+            <span class="gasto-monto">₡{{ g.monto }}</span>
+            <span class="gasto-justificacion">{{ g.justificacion }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Botón eliminar -->
+      <button class="btn btn-outline-danger btn-sm mt-3 w-100" (click)="eliminar(i)">
+        Eliminar Presupuesto
+      </button>
+
+    </div>
+
+  </div>
+</div>

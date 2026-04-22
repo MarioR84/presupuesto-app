@@ -1,0 +1,11 @@
+<nav class="app-menu">
+  <div class="menu-container">
+    <a class="brand" routerLink="/">💰 Presupuesto App</a>
+    <ul class="menu-list">
+      <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Inicio</a></li>
+      <li><a routerLink="/dashboard" routerLinkActive="active">Dashboard</a></li>
+      <li><a routerLink="/presupuesto" routerLinkActive="active">Presupuestos</a></li>
+      <li><button type="button" class="logout-btn" (click)="salir()">Salir</button></li>
+    </ul>
+  </div>
+</nav>

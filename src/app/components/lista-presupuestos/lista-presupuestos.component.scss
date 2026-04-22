@@ -1,0 +1,140 @@
+.presupuestos-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+
+  .presupuesto-card {
+    flex: 1 1 320px;
+    min-width: 320px;
+    max-width: 420px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e0e0e0;
+    transition: transform 0.2s, box-shadow 0.2s;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+  }
+}
+
+// Encabezado con colores variados
+.card-header-presupuesto {
+  padding: 1rem;
+  color: white;
+  border-bottom: 3px solid rgba(255, 255, 255, 0.3);
+
+  &.color-0 { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+  &.color-1 { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+  &.color-2 { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+  &.color-3 { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+
+  .presupuesto-nombre {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+    margin-bottom: 0.25rem;
+    letter-spacing: 0.5px;
+  }
+
+  .presupuesto-meses {
+    font-size: 0.85rem;
+    margin: 0;
+    opacity: 0.9;
+    font-weight: 500;
+  }
+}
+
+// Contenido de la tarjeta
+.card-body-presupuesto {
+  padding: 1rem;
+}
+
+// Resumen financiero
+.resumen-financiero {
+  background: #f8f9fa;
+  padding: 0.75rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.finanza-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.95rem;
+
+  .finanza-label {
+    color: #666;
+    font-weight: 500;
+  }
+
+  .finanza-valor {
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+
+  &.estado-success .finanza-valor { color: #28a745; }
+  &.estado-warning .finanza-valor { color: #ffc107; }
+  &.estado-danger .finanza-valor { color: #dc3545; }
+}
+
+// Divider
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #ddd, transparent);
+  margin: 0.75rem 0;
+}
+
+// Secciones
+.seccion {
+  margin-bottom: 0.75rem;
+
+  .seccion-titulo {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+}
+
+// Listado de gastos mejorado
+.gastos-lista {
+  background: #f9f9f9;
+  border-radius: 4px;
+  padding: 0.5rem;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.gasto-item {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  font-size: 0.85rem;
+  border-bottom: 1px solid #eee;
+  align-items: flex-start;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  .gasto-monto {
+    color: #dc3545;
+    font-weight: 700;
+    min-width: 60px;
+  }
+
+  .gasto-justificacion {
+    color: #666;
+    flex: 1;
+    word-break: break-word;
+  }
+}

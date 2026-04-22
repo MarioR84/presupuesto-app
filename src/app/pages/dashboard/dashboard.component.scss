@@ -1,0 +1,105 @@
+// KPI Cards
+.kpi-card {
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid #e0e0e0;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+}
+
+// Grid para presupuestos en el dashboard
+.presupuestos-grid-dashboard {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+
+  .presupuesto-card-dashboard {
+    flex: 1 1 300px;
+    min-width: 300px;
+    max-width: 400px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e0e0e0;
+    transition: transform 0.2s, box-shadow 0.2s;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+  }
+}
+
+// Encabezado con colores variados (reutilizado de lista-presupuestos)
+.card-header-presupuesto {
+  padding: 1rem;
+  color: white;
+  border-bottom: 3px solid rgba(255, 255, 255, 0.3);
+
+  &.color-0 { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+  &.color-1 { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+  &.color-2 { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+  &.color-3 { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+
+  .presupuesto-nombre {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+    margin-bottom: 0.25rem;
+    letter-spacing: 0.5px;
+  }
+
+  .presupuesto-meses {
+    font-size: 0.85rem;
+    margin: 0;
+    opacity: 0.9;
+    font-weight: 500;
+  }
+}
+
+// Contenido de tarjeta
+.card-body-presupuesto-dashboard {
+  padding: 1rem;
+}
+
+// Resumen financiero
+.resumen-financiero {
+  background: #f8f9fa;
+  padding: 0.75rem;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.finanza-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.95rem;
+
+  .finanza-label {
+    color: #666;
+    font-weight: 500;
+  }
+
+  .finanza-valor {
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+
+  &.estado-success .finanza-valor { color: #28a745; }
+  &.estado-warning .finanza-valor { color: #ffc107; }
+  &.estado-danger .finanza-valor { color: #dc3545; }
+
+  &.text-muted .finanza-valor { color: #666; }
+}
+
+// Barra de progreso con colores según estado
+.progress-bar {
+  &.progress-success { background-color: #28a745; }
+  &.progress-warning { background-color: #ffc107; }
+  &.progress-danger { background-color: #dc3545; }
+}

@@ -1,0 +1,86 @@
+<app-menu></app-menu>
+
+<div class="container mt-4">
+  <h2 class="text-center mb-5">📊 Dashboard Presupuestario</h2>
+
+  <!-- KPIs Resumen -->
+  <div class="row mb-4">
+    <div class="col-md-4">
+      <div class="card text-center p-4 bg-light kpi-card">
+        <h5 class="text-muted">Presupuesto Total</h5>
+        <h3 class="text-primary fw-bold">₡{{ presupuestoTotal }}</h3>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card text-center p-4 bg-light kpi-card">
+        <h5 class="text-muted">Gasto Total</h5>
+        <h3 class="text-danger fw-bold">₡{{ gastoTotal }}</h3>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card text-center p-4 bg-light kpi-card">
+        <h5 class="text-muted">Porcentaje Usado</h5>
+        <h3 class="text-warning fw-bold">{{ getPorcentajeUsado() | number:'1.1-1' }}%</h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4">
+    <div class="col-md-6">
+      <div class="card p-4 kpi-card">
+        <h5>Cantidad de Presupuestos</h5>
+        <h2 class="text-success">{{ cantidadPresupuestos }}</h2>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card p-4 kpi-card">
+        <h5>Presupuesto Restante</h5>
+        <h2 class="text-info">₡{{ presupuestoRestante }}</h2>
+      </div>
+    </div>
+  </div>
+
+  <!-- Detalle de Presupuestos con diseño mejorado -->
+  <h4 class="mt-5 mb-4">Detalle de Presupuestos</h4>
+  <div *ngIf="presupuestos.length === 0" class="alert alert-info">
+    No hay presupuestos registrados aún. Ve a la sección "Presupuestos" para crear uno.
+  </div>
+
+  <div class="presupuestos-grid-dashboard">
+    <div *ngFor="let p of presupuestos; let i = index" class="presupuesto-card-dashboard">
+      <!-- Encabezado con color -->
+      <div class="card-header-presupuesto" [ngClass]="'color-' + (i % 4)">
+        <h4 class="presupuesto-nombre">{{ p.nombre }}</h4>
+        <p class="presupuesto-meses">{{ getMesesPresupuesto(p) }}</p>
+      </div>
+
+      <!-- Contenido -->
+      <div class="card-body-presupuesto-dashboard">
+        <!-- Resumen financiero -->
+        <div class="resumen-financiero">
+          <div class="finanza-item">
+            <span class="finanza-label">Inicial:</span>
+            <span class="finanza-valor">₡{{ p.monto }}</span>
+          </div>
+          <div class="finanza-item" [ngClass]="'estado-' + getColorClass(p)">
+            <span class="finanza-label">Restante:</span>
+            <span class="finanza-valor">₡{{ p.restante }}</span>
+          </div>
+          <div class="finanza-item text-muted">
+            <span class="finanza-label">Gastado:</span>
+            <span class="finanza-valor">₡{{ p.monto - p.restante }}</span>
+          </div>
+        </div>
+
+        <!-- Barra de progreso -->
+        <div class="progress mt-3" style="height: 6px;">
+          <div 
+            class="progress-bar" 
+            [ngClass]="'progress-' + getColorClass(p)"
+            [style.width.%]="((p.monto - p.restante) / p.monto) * 100">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

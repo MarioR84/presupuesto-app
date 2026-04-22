@@ -1,0 +1,11 @@
+<div class="card text-center p-3 mb-4">
+  <h3>Presupuesto</h3>
+
+  <p class="fw-bold">
+    Inicial: ₡{{ presupuestoInicial }}
+  </p>
+
+  <p class="fw-bold" [ngClass]="getColor()">
+    Restante: ₡{{ restante }}
+  </p>
+</div>

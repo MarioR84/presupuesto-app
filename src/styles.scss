@@ -1,0 +1,30 @@
+/* You can add global styles to this file, and also import other style files */
+
+.text-success {
+  color: #198754 !important;
+}
+
+.text-warning {
+  color: #ffc107 !important;
+}
+
+.text-danger {
+  color: #dc3545 !important;
+}
+
+.card {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card.text-success {
+  border: 2px solid #198754;
+}
+
+.card.text-warning {
+  border: 2px solid #ffc107;
+}
+
+.card.text-danger {
+  border: 2px solid #dc3545;
+}
+

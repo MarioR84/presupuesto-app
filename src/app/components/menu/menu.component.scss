@@ -1,0 +1,123 @@
+.app-menu {
+  background: linear-gradient(135deg, #0f172a 0%, #1f2937 100%);
+  color: #ffffff;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.18);
+  margin-bottom: 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.menu-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.brand {
+  color: #f8fafc;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 1.3rem;
+  letter-spacing: 0.02em;
+}
+
+.menu-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.menu-list li {
+  margin: 0;
+}
+
+.menu-list a {
+  color: #cbd5e1;
+  text-decoration: none;
+  padding: 0.65rem 1rem;
+  border-radius: 999px;
+  transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  border: 1px solid transparent;
+}
+
+.menu-list a:hover {
+  background-color: rgba(248, 250, 252, 0.12);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.menu-list a.active {
+  background-color: rgba(96, 165, 250, 0.18);
+  color: #dbeafe;
+  border-color: rgba(96, 165, 250, 0.35);
+}
+
+.logout-btn {
+  color: #fecaca;
+  background: transparent;
+  text-decoration: none;
+  padding: 0.65rem 1rem;
+  border-radius: 999px;
+  transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  border: 1px solid rgba(252, 165, 165, 0.35);
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  background-color: rgba(239, 68, 68, 0.2);
+  color: #fee2e2;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 900px) {
+  .menu-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .menu-list {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .menu-list a {
+    flex: 1 1 auto;
+    margin: 0.15rem;
+  }
+}
+
+@media (max-width: 540px) {
+  .menu-container {
+    padding: 0.8rem 1rem;
+  }
+
+  .brand {
+    width: 100%;
+    text-align: center;
+  }
+
+  .menu-list {
+    flex-direction: column;
+  }
+
+  .menu-list a {
+    width: 100%;
+  }
+}

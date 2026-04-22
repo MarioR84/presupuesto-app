@@ -1,0 +1,33 @@
+<app-menu></app-menu>
+
+<div class="container mt-4">
+
+  <h2 class="text-center mb-4">Administrar Presupuesto</h2>
+
+  <app-lista-presupuesto
+    [presupuestoInicial]="presupuesto"
+    [restante]="restante">
+  </app-lista-presupuesto>
+
+  <app-agregar-gasto
+    (nuevoGasto)="agregarGasto($event)">
+  </app-agregar-gasto>
+
+  <div *ngIf="error" class="alert alert-danger mt-3 text-center">
+    El gasto supera el presupuesto restante
+  </div>
+
+  <div class="alert alert-success mt-3 text-center" *ngIf="!error && gasto > 0">
+    ✓ Gasto agregado correctamente
+  </div>
+
+  <div class="mt-4" *ngIf="gastos.length > 0">
+    <h3>Gastos Agregados</h3>
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let g of gastos; let i = index">
+        Gasto {{ i + 1 }}: ₡{{ g }}
+      </li>
+    </ul>
+  </div>
+
+</div>
