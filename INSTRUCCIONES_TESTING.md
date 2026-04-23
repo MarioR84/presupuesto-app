@@ -1,6 +1,6 @@
 # 🧪 Instrucciones de Prueba - Presupuesto App
 
-**URL de la Aplicación:** https://stellar-medovik-438928.netlify.app
+**URL de la Aplicación:** https://presupuesto-app-one.vercel.app/login
 
 ---
 
