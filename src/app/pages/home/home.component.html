@@ -1,10 +1,41 @@
 <app-menu></app-menu>
 
-<div class="home">
-  <h1>💰 FinanzApp Lite</h1>
-  <p>Programado por: Mario Rodríguez</p>
+<section class="page-shell home-wrap">
+  <div class="home-hero app-surface">
+    <div class="home-copy">
+      <p class="home-eyebrow">Control Financiero Personal</p>
+      <h1 class="page-title">FinanzApp Lite</h1>
+      <p class="page-subtitle">
+        Organiza presupuestos mensuales, registra gastos y consulta tu avance en un dashboard
+        claro y rapido.
+      </p>
+      <div class="home-actions">
+        <button routerLink="/operaciones" class="btn btn-lg btn-primary action-main">
+          Empezar ahora
+        </button>
+        <a routerLink="/dashboard" class="btn btn-lg btn-outline-secondary action-secondary">
+          Ver dashboard
+        </a>
+      </div>
+      <p class="home-author">Programado por Mario Rodriguez</p>
+    </div>
 
-  <button routerLink="/operaciones">
-    Ingresar
-  </button>
-</div>
+    <aside class="home-stats">
+      <article class="stat-card">
+        <span class="stat-kicker">Paso 1</span>
+        <h3>Crea Presupuesto</h3>
+        <p>Define nombre, mes y monto inicial.</p>
+      </article>
+      <article class="stat-card">
+        <span class="stat-kicker">Paso 2</span>
+        <h3>Registra Gastos</h3>
+        <p>Guarda monto y justificacion para cada movimiento.</p>
+      </article>
+      <article class="stat-card">
+        <span class="stat-kicker">Paso 3</span>
+        <h3>Analiza el Avance</h3>
+        <p>Consulta porcentaje usado y restante disponible.</p>
+      </article>
+    </aside>
+  </div>
+</section>

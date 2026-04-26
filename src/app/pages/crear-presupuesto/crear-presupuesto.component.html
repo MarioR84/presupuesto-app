@@ -1,22 +1,27 @@
 <app-menu></app-menu>
 
-<div class="container mt-4">
-  <h2>Crear Presupuesto</h2>
+<section class="page-shell crear-page">
+  <div class="crear-panel app-surface">
+    <header class="crear-header">
+      <h1 class="page-title">Crear Presupuesto</h1>
+      <p class="page-subtitle">Define un monto inicial para comenzar a controlar tus gastos.</p>
+    </header>
 
-  <input
-    type="number"
-    [(ngModel)]="presupuesto"
-    class="form-control mb-2"
-    min="1"
-    step="1"
-    placeholder="Ej: 150000"
-  >
+    <input
+      type="number"
+      [(ngModel)]="presupuesto"
+      class="form-control mb-2"
+      min="1"
+      step="1"
+      placeholder="Ej: 150000"
+    >
 
-  <button class="btn btn-primary" (click)="guardarPresupuesto()">
-    Guardar
-  </button>
+    <button class="btn btn-primary save-btn" (click)="guardarPresupuesto()">
+      Guardar
+    </button>
 
-  <div *ngIf="error" class="alert alert-danger mt-2">
-    El presupuesto debe ser mayor a 0
+    <div *ngIf="error" class="alert alert-danger mt-3 mb-0">
+      El presupuesto debe ser mayor a 0
+    </div>
   </div>
-</div>
+</section>

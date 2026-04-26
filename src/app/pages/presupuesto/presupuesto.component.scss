@@ -1,31 +1,40 @@
-.container{
-  display: flex;
-  gap: 20px;
-  padding: 20px;
-  flex-direction: row;
+.presupuesto-page {
+  padding-top: 0.3rem;
 }
 
-.left{
-  width: 50%;
+.presupuesto-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+  gap: 1rem;
+  align-items: start;
 }
 
-.right{
-  width: 50%;
+.section-panel {
+  padding: 1rem;
+  min-height: 120px;
 }
 
-// Media query para mobile (pantalla vertical)
-@media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-    padding: 15px;
-    gap: 15px;
+.section-title {
+  margin: 0 0 0.85rem;
+  font-size: 1.08rem;
+  font-weight: 800;
+  color: #0f172a;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 0.6rem;
+}
+
+.right.section-panel {
+  position: sticky;
+  top: 88px;
+}
+
+@media (max-width: 992px) {
+  .presupuesto-grid {
+    grid-template-columns: 1fr;
   }
 
-  .left {
-    width: 100%;
-  }
-
-  .right {
-    width: 100%;
+  .right.section-panel {
+    position: static;
+    top: auto;
   }
 }

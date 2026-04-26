@@ -1,11 +1,12 @@
 .app-menu {
-  background: linear-gradient(135deg, #0f172a 0%, #1f2937 100%);
+  background: linear-gradient(110deg, #0f172a 0%, #1f2937 65%, #0f766e 140%);
   color: #ffffff;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.18);
   margin-bottom: 1.5rem;
   position: sticky;
   top: 0;
   z-index: 1000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .menu-container {
@@ -25,6 +26,7 @@
   font-weight: 800;
   font-size: 1.3rem;
   letter-spacing: 0.02em;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
 }
 
 .menu-list {
@@ -45,11 +47,11 @@
   text-decoration: none;
   padding: 0.65rem 1rem;
   border-radius: 999px;
-  transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+  transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-weight: 500;
+  font-weight: 600;
   border: 1px solid transparent;
 }
 
@@ -60,9 +62,9 @@
 }
 
 .menu-list a.active {
-  background-color: rgba(96, 165, 250, 0.18);
-  color: #dbeafe;
-  border-color: rgba(96, 165, 250, 0.35);
+  background-color: rgba(45, 212, 191, 0.16);
+  color: #ccfbf1;
+  border-color: rgba(45, 212, 191, 0.4);
 }
 
 .logout-btn {
@@ -78,6 +80,13 @@
   font-weight: 600;
   border: 1px solid rgba(252, 165, 165, 0.35);
   cursor: pointer;
+}
+
+.logout-btn:focus-visible,
+.menu-list a:focus-visible,
+.brand:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(94, 234, 212, 0.35);
 }
 
 .logout-btn:hover {

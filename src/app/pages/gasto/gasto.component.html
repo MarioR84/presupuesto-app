@@ -1,45 +1,50 @@
 <app-menu></app-menu>
 
-<div class="container mt-4">
-  <h2 class="text-center mb-4">Agregar Gasto</h2>
+<section class="page-shell gasto-page">
+  <div class="gasto-panel app-surface">
+    <header class="gasto-header">
+      <h1 class="page-title">Agregar Gasto</h1>
+      <p class="page-subtitle">Selecciona un presupuesto y registra movimientos con control inmediato de restante.</p>
+    </header>
 
-  <div *ngIf="presupuestos.length === 0" class="alert alert-info">
-    No hay presupuestos registrados. Ve a la sección "Presupuestos" y crea uno primero.
+    <div *ngIf="presupuestos.length === 0" class="alert alert-info">
+      No hay presupuestos registrados. Ve a la seccion "Presupuestos" y crea uno primero.
+    </div>
+
+    <div *ngIf="presupuestos.length > 0" class="mb-4 selector-wrap">
+      <label class="form-label">Selecciona un presupuesto</label>
+      <select class="form-select" [(ngModel)]="selectedPresupuestoIndex">
+        <option *ngFor="let p of presupuestos; let i = index" [ngValue]="i">
+          {{ p.nombre }} - Meses: {{ p.meses.join(', ') }} (Restante: ₡{{ p.restante }})
+        </option>
+      </select>
+    </div>
+
+    <app-lista-presupuesto
+      *ngIf="selectedPresupuesto"
+      [presupuestoInicial]="selectedPresupuesto.monto"
+      [restante]="selectedPresupuesto.restante">
+    </app-lista-presupuesto>
+
+    <app-agregar-gasto
+      (nuevoGasto)="agregarGasto($event)">
+    </app-agregar-gasto>
+
+    <div *ngIf="error" class="alert alert-danger mt-3 text-center">
+      {{ selectedPresupuesto ? 'El gasto supera el presupuesto restante' : 'Selecciona un presupuesto para asignar el gasto' }}
+    </div>
+
+    <div class="alert alert-success mt-3 text-center" *ngIf="!error && gastoAgregado > 0">
+      Gasto de ₡{{ gastoAgregado }} agregado correctamente a {{ selectedPresupuesto?.nombre }}
+    </div>
+
+    <div class="mt-4" *ngIf="gastos.length > 0">
+      <h3 class="subsection-title">Gastos Agregados</h3>
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let g of gastos; let i = index">
+          Gasto {{ i + 1 }}: ₡{{ g.monto }} (Presupuesto: {{ g.presupuesto }})
+        </li>
+      </ul>
+    </div>
   </div>
-
-  <div *ngIf="presupuestos.length > 0" class="mb-4">
-    <label class="form-label">Selecciona un presupuesto</label>
-    <select class="form-select" [(ngModel)]="selectedPresupuestoIndex">
-      <option *ngFor="let p of presupuestos; let i = index" [ngValue]="i">
-        {{ p.nombre }} - Meses: {{ p.meses.join(', ') }} (Restante: ₡{{ p.restante }})
-      </option>
-    </select>
-  </div>
-
-  <app-lista-presupuesto
-    *ngIf="selectedPresupuesto"
-    [presupuestoInicial]="selectedPresupuesto.monto"
-    [restante]="selectedPresupuesto.restante">
-  </app-lista-presupuesto>
-
-  <app-agregar-gasto
-    (nuevoGasto)="agregarGasto($event)">
-  </app-agregar-gasto>
-
-  <div *ngIf="error" class="alert alert-danger mt-3 text-center">
-    {{ selectedPresupuesto ? 'El gasto supera el presupuesto restante' : 'Selecciona un presupuesto para asignar el gasto' }}
-  </div>
-
-  <div class="alert alert-success mt-3 text-center" *ngIf="!error && gastoAgregado > 0">
-    ✓ Gasto de ₡{{ gastoAgregado }} agregado correctamente a {{ selectedPresupuesto?.nombre }}
-  </div>
-
-  <div class="mt-4" *ngIf="gastos.length > 0">
-    <h3>Gastos Agregados</h3>
-    <ul class="list-group">
-      <li class="list-group-item" *ngFor="let g of gastos; let i = index">
-        Gasto {{ i + 1 }}: ₡{{ g.monto }} (Presupuesto: {{ g.presupuesto }})
-      </li>
-    </ul>
-  </div>
-</div>
+</section>

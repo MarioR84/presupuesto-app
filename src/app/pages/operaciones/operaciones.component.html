@@ -1,18 +1,30 @@
 <app-menu></app-menu>
-<div class="menu">
 
-  <h2>Operaciones</h2>
+<section class="page-shell">
+  <div class="operations app-surface">
+    <header class="operations-header">
+      <h1 class="page-title">Operaciones</h1>
+      <p class="page-subtitle">Selecciona una accion para continuar con la administracion de tus finanzas.</p>
+    </header>
 
-  <button routerLink="/presupuesto">
-    Crear Presupuestos
-  </button>
+    <div class="operations-grid">
+      <a routerLink="/presupuesto" class="operation-card operation-create">
+        <h3>Crear Presupuestos</h3>
+        <p>Registra presupuestos por mes y asigna montos iniciales.</p>
+        <span class="operation-cta">Ir a Presupuestos</span>
+      </a>
 
-  <button routerLink="/gasto">
-    Agregar gasto
-  </button>
+      <a routerLink="/gasto" class="operation-card operation-spend">
+        <h3>Agregar Gasto</h3>
+        <p>Documenta egresos con monto y justificacion para mantener trazabilidad.</p>
+        <span class="operation-cta">Registrar gasto</span>
+      </a>
 
-  <button routerLink="/dashboard">
-    Ver Dashboard
-  </button>
-
-</div>
+      <a routerLink="/dashboard" class="operation-card operation-dashboard">
+        <h3>Ver Dashboard</h3>
+        <p>Consulta KPIs clave, porcentajes usados y estado de cada presupuesto.</p>
+        <span class="operation-cta">Abrir dashboard</span>
+      </a>
+    </div>
+  </div>
+</section>

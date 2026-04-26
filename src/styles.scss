@@ -1,4 +1,83 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global visual system */
+
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --bg-page: radial-gradient(circle at 8% 12%, #fef3c7 0%, #fff8eb 35%, #f5f7ff 100%);
+  --surface: #ffffff;
+  --surface-soft: #f8fafc;
+  --text-main: #111827;
+  --text-muted: #6b7280;
+  --primary: #0f766e;
+  --primary-strong: #115e59;
+  --accent: #dc2626;
+  --border-soft: #e5e7eb;
+  --shadow-soft: 0 10px 30px rgba(15, 23, 42, 0.08);
+  --shadow-hover: 0 16px 36px rgba(15, 23, 42, 0.14);
+  --radius-lg: 18px;
+  --radius-md: 12px;
+  --focus-ring: 0 0 0 3px rgba(13, 148, 136, 0.28);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  font-family: 'Manrope', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--text-main);
+  background: var(--bg-page);
+  min-height: 100%;
+  text-rendering: optimizeLegibility;
+}
+
+a,
+button,
+.btn,
+input,
+select,
+textarea {
+  transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+a:focus-visible,
+button:focus-visible,
+.btn:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.page-shell {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 1.25rem;
+}
+
+.app-surface {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(6px);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  animation: surfaceIn 0.35s ease;
+}
+
+.page-title {
+  font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.3rem);
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.page-subtitle {
+  margin: 0.6rem 0 0;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
 
 .text-success {
   color: #198754 !important;
@@ -14,6 +93,25 @@
 
 .card {
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  border-radius: var(--radius-md);
+  border-color: var(--border-soft);
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.05);
+}
+
+.btn {
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+@keyframes surfaceIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .card.text-success {

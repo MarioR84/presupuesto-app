@@ -1,7 +1,10 @@
-<div class="card p-4">
-  <h4 class="mb-4">Agregar Presupuesto</h4>
+<div class="card p-4 form-budget-card">
+  <div class="form-budget-header">
+    <h4 class="mb-1">Agregar Presupuesto</h4>
+    <p class="form-budget-subtitle">Completa los campos para registrar un nuevo presupuesto mensual.</p>
+  </div>
   
-  <div class="mb-3">
+  <div class="mb-3 form-field">
     <label for="nombre" class="form-label">Nombre</label>
     <input 
       type="text" 
@@ -11,7 +14,7 @@
       placeholder="Ej: Vivienda">
   </div>
 
-  <div class="mb-3">
+  <div class="mb-3 form-field">
     <label for="mes" class="form-label">Mes</label>
     <select
       id="mes"
@@ -22,7 +25,7 @@
     </select>
   </div>
 
-  <div class="mb-3">
+  <div class="mb-3 form-field">
     <label for="monto" class="form-label">Monto</label>
     <input
       type="number"
@@ -34,7 +37,7 @@
       placeholder="Ej: 5000">
   </div>
 
-  <button class="btn btn-success w-100" (click)="guardar()">
+  <button class="btn btn-success w-100 form-save-btn" (click)="guardar()">
     Guardar Presupuesto
   </button>
 

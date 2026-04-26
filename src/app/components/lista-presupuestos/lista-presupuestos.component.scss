@@ -1,21 +1,27 @@
+.lista-title {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #1e293b;
+}
+
 .presupuestos-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.5rem;
+  gap: 1rem;
 
   .presupuesto-card {
     flex: 1 1 320px;
     min-width: 320px;
     max-width: 420px;
-    border-radius: 8px;
+    border-radius: 14px;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    border: 1px solid #e0e0e0;
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+    border: 1px solid #e2e8f0;
     transition: transform 0.2s, box-shadow 0.2s;
 
     &:hover {
       transform: translateY(-4px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 10px 22px rgba(15, 23, 42, 0.14);
     }
   }
 }
@@ -50,6 +56,7 @@
 // Contenido de la tarjeta
 .card-body-presupuesto {
   padding: 1rem;
+  background: #ffffff;
 }
 
 // Resumen financiero
@@ -87,7 +94,7 @@
 // Divider
 .divider {
   height: 1px;
-  background: linear-gradient(90deg, transparent, #ddd, transparent);
+  background: linear-gradient(90deg, transparent, #cbd5e1, transparent);
   margin: 0.75rem 0;
 }
 
@@ -107,8 +114,9 @@
 
 // Listado de gastos mejorado
 .gastos-lista {
-  background: #f9f9f9;
-  border-radius: 4px;
+  background: #f8fafc;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
   padding: 0.5rem;
   max-height: 150px;
   overflow-y: auto;
@@ -137,4 +145,14 @@
     flex: 1;
     word-break: break-word;
   }
+}
+
+.control-btn {
+  border-radius: 8px;
+  font-weight: 700;
+}
+
+.form-control-sm {
+  border-radius: 8px;
+  border-color: #cbd5e1;
 }

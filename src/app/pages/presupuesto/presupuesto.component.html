@@ -1,13 +1,15 @@
 <app-menu></app-menu>
 
-<div class="container">
+<section class="page-shell presupuesto-page">
+  <div class="presupuesto-grid">
+    <div class="left app-surface section-panel">
+      <h2 class="section-title">Presupuestos Registrados</h2>
+      <app-lista-presupuestos></app-lista-presupuestos>
+    </div>
 
-  <div class="left">
-    <app-lista-presupuestos></app-lista-presupuestos>
+    <div class="right app-surface section-panel">
+      <h2 class="section-title">Nuevo Presupuesto</h2>
+      <app-form-presupuesto></app-form-presupuesto>
+    </div>
   </div>
-
-  <div class="right">
-    <app-form-presupuesto></app-form-presupuesto>
-  </div>
-
-</div>
+</section>
