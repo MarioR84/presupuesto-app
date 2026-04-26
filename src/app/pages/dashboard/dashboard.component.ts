@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PresupuestoService } from '../../services/presupuesto.service';
+import { MontoPipe } from '../../pipes/monto.pipe';
 import { MenuComponent } from '../../components/menu/menu.component';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, MenuComponent],
+  imports: [CommonModule, MenuComponent, MontoPipe],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
@@ -50,15 +51,7 @@ export class DashboardComponent implements OnInit {
   }
 
   getMesesPresupuesto(p: any): string {
-    if (Array.isArray(p.meses) && p.meses.length > 0) {
-      return p.meses.join(', ');
-    }
-
-    if (typeof p.mes === 'string' && p.mes.trim()) {
-      return p.mes;
-    }
-
-    return 'Sin meses registrados';
+    return this.presupuestoService.getMesesDisplay(p);
   }
 
   /** Retorna color según porcentaje restante (success/warning/danger) */

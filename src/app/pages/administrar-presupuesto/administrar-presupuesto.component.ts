@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ListaPresupuestoComponent } from "../../components/lista-presupuesto/lista-presupuesto.component";
 import { AgregarGastoComponent } from "../../components/agregar-gasto/agregar-gasto.component";
 import { NgIf, NgFor } from "@angular/common";
+import { MontoPipe } from '../../pipes/monto.pipe';
 import { PresupuestoService } from '../../services/presupuesto.service';
 import { MenuComponent } from '../../components/menu/menu.component';
 
@@ -9,7 +10,7 @@ import { MenuComponent } from '../../components/menu/menu.component';
   selector: 'app-administrar-presupuesto',
   templateUrl: './administrar-presupuesto.component.html',
   styleUrls: ['./administrar-presupuesto.component.scss'],
-  imports: [ListaPresupuestoComponent, AgregarGastoComponent, NgIf, NgFor, MenuComponent]
+  imports: [ListaPresupuestoComponent, AgregarGastoComponent, NgIf, NgFor, MontoPipe, MenuComponent]
 })
 export class AdministrarPresupuestoComponent implements OnInit {
 

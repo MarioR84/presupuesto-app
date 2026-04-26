@@ -2,10 +2,10 @@
   <h3>Presupuesto</h3>
 
   <p class="fw-bold">
-    Inicial: ₡{{ presupuestoInicial }}
+    Inicial: ₡{{ presupuestoInicial | monto }}
   </p>
 
   <p class="fw-bold" [ngClass]="getColor()">
-    Restante: ₡{{ restante }}
+    Restante: ₡{{ restante | monto }}
   </p>
 </div>

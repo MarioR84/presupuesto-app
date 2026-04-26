@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { MontoPipe } from '../../pipes/monto.pipe';
 import { PresupuestoService } from '../../services/presupuesto.service';
 
 @Component({
   selector: 'app-lista-presupuestos',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, MontoPipe],
   templateUrl: './lista-presupuestos.component.html',
   styleUrl: './lista-presupuestos.component.scss'
 })
@@ -18,6 +19,10 @@ export class ListaPresupuestosComponent {
   exitosGasto: boolean[] = [];
 
   constructor(public presupuestoService: PresupuestoService) {}
+
+  getMesesPresupuesto(p: any): string {
+    return this.presupuestoService.getMesesDisplay(p);
+  }
 
   getColor(p: any): string {
     if (p.monto === 0) return 'text-muted';

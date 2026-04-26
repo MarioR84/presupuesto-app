@@ -1,10 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MontoPipe } from '../../pipes/monto.pipe';
 
 @Component({
   selector: 'app-lista-presupuesto',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MontoPipe],
   templateUrl: './lista-presupuesto.component.html'
 })
 export class ListaPresupuestoComponent {

@@ -25,6 +25,20 @@ export interface Presupuesto {
 export class PresupuestoService {
   private readonly PRESUPUESTO_INICIAL_KEY = 'presupuestoInicial';
   private readonly PRESUPUESTOS_KEY = 'presupuestos';
+  private readonly MESES_VALIDOS = [
+    'Enero',
+    'Febrero',
+    'Marzo',
+    'Abril',
+    'Mayo',
+    'Junio',
+    'Julio',
+    'Agosto',
+    'Septiembre',
+    'Octubre',
+    'Noviembre',
+    'Diciembre'
+  ];
 
   presupuestoInicial: number = 0;
   presupuestos: Presupuesto[] = [];
@@ -40,12 +54,64 @@ export class PresupuestoService {
 
   /** Normaliza nombres para comparación case-insensitive */
   private normalizarNombre(nombre: string): string {
-    return nombre.trim().toLowerCase();
+    return this.normalizarTexto(nombre);
   }
 
-  /** Normaliza meses para evitar duplicados */
-  private normalizarMes(mes: string): string {
-    return mes.trim().toLowerCase();
+  /** Normaliza texto removiendo acentos y unificando formato */
+  private normalizarTexto(texto: string): string {
+    return texto
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .trim()
+      .toLowerCase();
+  }
+
+  /** Normaliza meses y valida que correspondan a un mes real */
+  private normalizarMes(mes: string): string | null {
+    const entrada = this.normalizarTexto(mes);
+    if (!entrada) {
+      return null;
+    }
+
+    const exacto = this.MESES_VALIDOS.find(
+      (m) => this.normalizarTexto(m) === entrada
+    );
+    if (exacto) {
+      return exacto;
+    }
+
+    const porPrefijo = this.MESES_VALIDOS.find((m) =>
+      entrada.startsWith(this.normalizarTexto(m))
+    );
+    return porPrefijo ?? null;
+  }
+
+  private obtenerMesesValidosUnicos(meses: string[]): string[] {
+    const unicos: string[] = [];
+    for (const mes of meses) {
+      const normalizado = this.normalizarMes(mes);
+      if (!normalizado) {
+        continue;
+      }
+
+      if (!unicos.includes(normalizado)) {
+        unicos.push(normalizado);
+      }
+    }
+
+    return unicos;
+  }
+
+  getMesesDisplay(presupuesto: { meses?: string[]; mes?: string } | null | undefined): string {
+    const meses = this.obtenerMesesValidosUnicos(
+      Array.isArray(presupuesto?.meses)
+        ? presupuesto.meses
+        : presupuesto?.mes
+          ? [presupuesto.mes]
+          : []
+    );
+
+    return meses.length > 0 ? meses.join(', ') : 'Sin meses registrados';
   }
 
   /** Carga datos iniciales desde localStorage */
@@ -68,15 +134,18 @@ export class PresupuestoService {
       >;
       this.presupuestos = parsed.map((p) => ({
         nombre: p.nombre,
-        meses: Array.isArray(p.meses)
-          ? p.meses
-          : p.mes
-            ? [p.mes]
-            : [],
+        meses: this.obtenerMesesValidosUnicos(
+          Array.isArray(p.meses)
+            ? p.meses
+            : p.mes
+              ? [p.mes]
+              : []
+        ),
         monto: Number(p.monto),
         restante: Number(p.restante),
         gastos: Array.isArray((p as any).gastos) ? (p as any).gastos : []
       }));
+      this.guardarEnStorage();
     } catch {
       this.presupuestos = [];
     }
@@ -115,16 +184,22 @@ export class PresupuestoService {
     presupuesto: { nombre: string; mes: string; monto: number; restante: number }
   ): { ok: boolean; error?: string; accion?: 'creado' | 'acumulado' } {
     const nombreNormalizado = this.normalizarNombre(presupuesto.nombre);
+    const mesNuevo = this.normalizarMes(presupuesto.mes);
+
+    if (!mesNuevo) {
+      return {
+        ok: false,
+        error: 'Mes no valido. Selecciona un mes del listado.'
+      };
+    }
+
     const indexExistente = this.presupuestos.findIndex(
       (p) => this.normalizarNombre(p.nombre) === nombreNormalizado
     );
 
     if (indexExistente >= 0) {
       const actual = this.presupuestos[indexExistente];
-      const mesNuevo = presupuesto.mes.trim();
-      const yaTieneMes = actual.meses.some(
-        (m) => this.normalizarMes(m) === this.normalizarMes(mesNuevo)
-      );
+      const yaTieneMes = actual.meses.includes(mesNuevo);
 
       if (!yaTieneMes) {
         actual.meses.push(mesNuevo);
@@ -138,7 +213,7 @@ export class PresupuestoService {
 
     this.presupuestos.push({
       nombre: presupuesto.nombre.trim(),
-      meses: [presupuesto.mes.trim()],
+      meses: [mesNuevo],
       monto: Number(presupuesto.monto),
       restante: Number(presupuesto.restante),
       gastos: []

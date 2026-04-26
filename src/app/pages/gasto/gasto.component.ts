@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AgregarGastoComponent } from '../../components/agregar-gasto/agregar-gasto.component';
+import { MontoPipe } from '../../pipes/monto.pipe';
 import { ListaPresupuestoComponent } from '../../components/lista-presupuesto/lista-presupuesto.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -9,7 +10,7 @@ import { MenuComponent } from '../../components/menu/menu.component';
 @Component({
   selector: 'app-gasto',
   standalone: true,
-  imports: [AgregarGastoComponent, ListaPresupuestoComponent, CommonModule, FormsModule, MenuComponent],
+  imports: [AgregarGastoComponent, ListaPresupuestoComponent, CommonModule, FormsModule, MenuComponent, MontoPipe],
   templateUrl: './gasto.component.html',
   styleUrl: './gasto.component.scss'
 })
@@ -35,6 +36,10 @@ export class GastoComponent implements OnInit {
     return this.selectedPresupuestoIndex !== null
       ? this.presupuestos[this.selectedPresupuestoIndex]
       : null;
+  }
+
+  getMesesPresupuesto(p: any): string {
+    return this.presupuestoService.getMesesDisplay(p);
   }
 
   agregarGasto(gasto: number): void {

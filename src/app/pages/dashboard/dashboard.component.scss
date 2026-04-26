@@ -120,6 +120,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 0.5rem;
   font-size: 0.92rem;
 
   .finanza-label {
@@ -130,6 +131,8 @@
   .finanza-valor {
     font-weight: 800;
     color: #1e293b;
+    text-align: right;
+    overflow-wrap: anywhere;
   }
 
   &.estado-success .finanza-valor { color: #16a34a; }

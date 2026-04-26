@@ -10,7 +10,7 @@
     <!-- Encabezado con nombre -->
     <div class="card-header-presupuesto" [ngClass]="'color-' + (i % 4)">
       <h4 class="presupuesto-nombre">{{ p.nombre }}</h4>
-      <p class="presupuesto-meses">{{ p.meses.join(', ') }}</p>
+      <p class="presupuesto-meses">{{ getMesesPresupuesto(p) }}</p>
     </div>
 
     <!-- Contenido principal -->
@@ -20,11 +20,11 @@
       <div class="resumen-financiero">
         <div class="finanza-item">
           <span class="finanza-label">Inicial:</span>
-          <span class="finanza-valor">₡{{ p.monto }}</span>
+          <span class="finanza-valor">₡{{ p.monto | monto }}</span>
         </div>
         <div class="finanza-item" [ngClass]="'estado-' + (getColor(p).replace('text-', ''))">
           <span class="finanza-label">Restante:</span>
-          <span class="finanza-valor">₡{{ p.restante }}</span>
+          <span class="finanza-valor">₡{{ p.restante | monto }}</span>
         </div>
       </div>
 
@@ -78,7 +78,7 @@
         <h6 class="seccion-titulo mb-2">Historial ({{ p.gastos.length }})</h6>
         <div class="gastos-lista">
           <div *ngFor="let g of p.gastos" class="gasto-item">
-            <span class="gasto-monto">₡{{ g.monto }}</span>
+            <span class="gasto-monto">₡{{ g.monto | monto }}</span>
             <span class="gasto-justificacion">{{ g.justificacion }}</span>
           </div>
         </div>

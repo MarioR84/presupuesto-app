@@ -74,6 +74,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 0.5rem;
   font-size: 0.95rem;
 
   .finanza-label {
@@ -84,6 +85,8 @@
   .finanza-valor {
     font-weight: 700;
     font-size: 1.1rem;
+    text-align: right;
+    overflow-wrap: anywhere;
   }
 
   &.estado-success .finanza-valor { color: #28a745; }
@@ -155,4 +158,12 @@
 .form-control-sm {
   border-radius: 8px;
   border-color: #cbd5e1;
+}
+
+@media (max-width: 520px) {
+  .presupuestos-grid .presupuesto-card {
+    flex-basis: 100%;
+    min-width: 100%;
+    max-width: 100%;
+  }
 }

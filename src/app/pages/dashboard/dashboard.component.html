@@ -12,11 +12,11 @@
   <div class="kpi-grid mt-3">
     <div class="kpi-card app-surface">
       <h5>Presupuesto Total</h5>
-      <h3 class="kpi-value text-primary">₡{{ presupuestoTotal }}</h3>
+      <h3 class="kpi-value text-primary">₡{{ presupuestoTotal | monto }}</h3>
     </div>
     <div class="kpi-card app-surface">
       <h5>Gasto Total</h5>
-      <h3 class="kpi-value text-danger">₡{{ gastoTotal }}</h3>
+      <h3 class="kpi-value text-danger">₡{{ gastoTotal | monto }}</h3>
     </div>
     <div class="kpi-card app-surface">
       <h5>Porcentaje Usado</h5>
@@ -28,7 +28,7 @@
     </div>
     <div class="kpi-card app-surface">
       <h5>Presupuesto Restante</h5>
-      <h3 class="kpi-value text-info">₡{{ presupuestoRestante }}</h3>
+      <h3 class="kpi-value text-info">₡{{ presupuestoRestante | monto }}</h3>
     </div>
   </div>
 
@@ -50,15 +50,15 @@
           <div class="resumen-financiero">
             <div class="finanza-item">
               <span class="finanza-label">Inicial:</span>
-              <span class="finanza-valor">₡{{ p.monto }}</span>
+              <span class="finanza-valor">₡{{ p.monto | monto }}</span>
             </div>
             <div class="finanza-item" [ngClass]="'estado-' + getColorClass(p)">
               <span class="finanza-label">Restante:</span>
-              <span class="finanza-valor">₡{{ p.restante }}</span>
+              <span class="finanza-valor">₡{{ p.restante | monto }}</span>
             </div>
             <div class="finanza-item text-muted">
               <span class="finanza-label">Gastado:</span>
-              <span class="finanza-valor">₡{{ p.monto - p.restante }}</span>
+              <span class="finanza-valor">₡{{ p.monto - p.restante | monto }}</span>
             </div>
           </div>
 

@@ -28,7 +28,7 @@
       <h3 class="subsection-title">Gastos Agregados</h3>
       <ul class="list-group">
         <li class="list-group-item" *ngFor="let g of gastos; let i = index">
-          Gasto {{ i + 1 }}: ₡{{ g }}
+          Gasto {{ i + 1 }}: ₡{{ g | monto }}
         </li>
       </ul>
     </div>

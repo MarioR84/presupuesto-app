@@ -15,7 +15,7 @@
       <label class="form-label">Selecciona un presupuesto</label>
       <select class="form-select" [(ngModel)]="selectedPresupuestoIndex">
         <option *ngFor="let p of presupuestos; let i = index" [ngValue]="i">
-          {{ p.nombre }} - Meses: {{ p.meses.join(', ') }} (Restante: ₡{{ p.restante }})
+          {{ p.nombre }} - Meses: {{ getMesesPresupuesto(p) }} (Restante: ₡{{ p.restante | monto }})
         </option>
       </select>
     </div>
@@ -35,14 +35,14 @@
     </div>
 
     <div class="alert alert-success mt-3 text-center" *ngIf="!error && gastoAgregado > 0">
-      Gasto de ₡{{ gastoAgregado }} agregado correctamente a {{ selectedPresupuesto?.nombre }}
+      Gasto de ₡{{ gastoAgregado | monto }} agregado correctamente a {{ selectedPresupuesto?.nombre }}
     </div>
 
     <div class="mt-4" *ngIf="gastos.length > 0">
       <h3 class="subsection-title">Gastos Agregados</h3>
       <ul class="list-group">
         <li class="list-group-item" *ngFor="let g of gastos; let i = index">
-          Gasto {{ i + 1 }}: ₡{{ g.monto }} (Presupuesto: {{ g.presupuesto }})
+          Gasto {{ i + 1 }}: ₡{{ g.monto | monto }} (Presupuesto: {{ g.presupuesto }})
         </li>
       </ul>
     </div>
